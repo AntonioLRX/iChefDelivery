@@ -14,6 +14,13 @@ struct ContentView: View {
                 .imageScale(.large)
                 .foregroundStyle(.tint)
             Text("My first class!")
+            Button {
+                print("clicado")
+            } label: {
+                Text("Clica em mim🫦".uppercased()).font(.caption2).padding(.all)
+                
+            }.background(.white).cornerRadius(CGFloat(6)).buttonBorderShape(.circle).border(Color.gray)
+
         }
         .padding()
     }
