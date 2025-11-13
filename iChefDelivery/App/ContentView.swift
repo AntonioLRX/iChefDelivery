@@ -10,26 +10,20 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         VStack {
-            Image(systemName: "star")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("My first class!")
-            Button {
-                print("clicado")
-            } label: {
-                Text("Clica em mim🫦".uppercased()).font(.caption2).padding(.all)
-                
-            }.background(.white).cornerRadius(CGFloat(6)).buttonBorderShape(.circle).border(Color.gray)
-
+            NavigationBar()
+                .padding(.horizontal, 15)
+            ScrollView(
+                .vertical, showsIndicators: false
+            ) {
+                VStack {
+                    OrderTypeGridView()
+                }
+            }
         }
         .padding()
     }
 }
 
-#Preview {
+#Preview(traits: .sizeThatFitsLayout) {
     ContentView()
 }
-
-#Preview(traits: .sizeThatFitsLayout, body: {
-    ContentView()
-})
