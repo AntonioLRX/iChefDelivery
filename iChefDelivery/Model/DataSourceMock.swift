@@ -16,3 +16,5 @@ let ordersMock: [OrderType] = [
     OrderType(id: 6, name: "Bebidas", image: "bebidas"),
     OrderType(id: 7, name: "Gourmet", image: "gourmet"),
 ]
+
+let orderCarouselMock: OrderType = OrderType(id: 1, name: "", image: "barbecue-banner")
