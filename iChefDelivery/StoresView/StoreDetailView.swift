@@ -10,47 +10,73 @@ import SwiftUI
 struct StoreDetailView: View {
     
     let store: StoreType
-    var contador: Int = 0
+    var titleProducts: String = "Produtos"
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Image(store.headerImage)
-                .resizable()
-                .scaledToFit()
-            HStack {
-                Text(store.name)
-                    .font(.title)
-                    .bold()
-                Spacer()
-                Image(store.logoImage)
-                
-            }
-            .padding(.vertical, 8)
-            .padding(.horizontal)
-            
-            HStack {
-                Text(store.location)
-                
-                Spacer()
-                
-                ForEach(1...5, id: \.self) { index in
-                    Image(systemName: index <= store.stars ? "star.fill" : "star")
-                        .foregroundColor(index <= store.stars ? .yellow : .gray)
-                        .font(.caption)
+        ScrollView(showsIndicators: false) {
+            VStack(alignment: .leading) {
+                Image(store.headerImage)
+                    .resizable()
+                    .scaledToFit()
+                HStack {
+                    Text(store.name)
+                        .font(.title)
+                        .bold()
+                    Spacer()
+                    Image(store.logoImage)
                     
                 }
+                .padding(.vertical, 8)
+                .padding(.horizontal)
                 
+                HStack {
+                    Text(store.location)
+                    
+                    Spacer()
+                    
+                    ForEach(1...5, id: \.self) { index in
+                        Image(systemName: index <= store.stars ? "star.fill" : "star")
+                            .foregroundColor(index <= store.stars ? .yellow : .gray)
+                            .font(.caption)
+                        
+                    }
+                    
+                }
+                .padding(.vertical, 8)
+                .padding(.horizontal)
+                
+                Text(titleProducts)
+                    .font(.title2)
+                    .bold()
+                    .padding()
+                
+                ForEach(store.products) { product in
+                    VStack(alignment: .leading) {
+                        HStack(spacing: 8) {
+                            VStack(alignment: .leading, spacing: 8) {
+                                Text(product.name)
+                                    .bold()
+                                Text(product.description)
+                                    .foregroundColor(.black.opacity(0.5))
+                                Text("R$ \(product.price)")
+                                    .bold()
+                            }
+                            Spacer()
+                            
+                            Image(product.image)
+                                .resizable()
+                                .scaledToFit()
+                                .cornerRadius(12)
+                                .frame(width: 120, height: 120)
+                                .shadow(color: .black.opacity(0.3), radius: 20, x: 6, y: 8)
+                        }
+                    }.padding(.vertical, 8)
+                        .padding(.horizontal)
+                }
             }
-            .padding(.vertical, 8)
-            .padding(.horizontal)
-            
-            Text("Produtos")
-                .font(.title2)
-                .bold()
-                .padding()
+            .navigationTitle(store.name)
+            .navigationBarTitleDisplayMode(.inline)
         }
-        .navigationTitle(store.name)
-        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
