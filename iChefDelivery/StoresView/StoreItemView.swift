@@ -9,11 +9,11 @@ import SwiftUI
 
 struct StoreItemView: View {
     
-    let store: OrderType
+    let store: StoreType
     
     var body: some View {
         HStack {
-            Image(store.image)
+            Image(store.logoImage)
                 .resizable()
                 .scaledToFit()
                 .cornerRadius(25)
