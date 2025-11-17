@@ -58,7 +58,7 @@ struct StoreDetailView: View {
                                     .bold()
                                 Text(product.description)
                                     .foregroundColor(.black.opacity(0.5))
-                                Text("R$ \(product.price)")
+                                Text(product.formattedPrice)
                                     .bold()
                             }
                             Spacer()
