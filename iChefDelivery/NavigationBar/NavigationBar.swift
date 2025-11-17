@@ -21,16 +21,8 @@ struct NavigationBar: View {
                     .font(.title3)
                     .foregroundColor(.red)
             }
-            
-            
-
-
         }
     }
-}
-
-#Preview {
-    NavigationBar()
 }
 
 #Preview(traits: .sizeThatFitsLayout, body: {
