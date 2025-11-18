@@ -12,7 +12,26 @@ struct ProductDetailView: View {
     let product: ProductType
     
     var body: some View {
-        Text(product.name)
+        ScrollView {
+            VStack(spacing: 8) {
+                Image(product.image)
+                    .resizable()
+                    .scaledToFit()
+                
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(product.name)
+                        .font(.title)
+                        .bold()
+                    Text(product.description)
+                        
+                    Text(product.formattedPrice)
+                        .font(.title3)
+                        .bold()
+                    
+                }.padding(.vertical, 20)
+                    .padding(.horizontal, 10)
+            }
+        }
     }
 }
 
