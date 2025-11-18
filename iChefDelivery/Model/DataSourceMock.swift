@@ -106,4 +106,4 @@ let storesMock: [StoreType] = [
 
 
 let storesItemMock: StoreType = storesMock[0]
-
+let productsItemMock: ProductType = storesItemMock.products[0]
