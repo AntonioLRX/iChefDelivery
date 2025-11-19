@@ -12,6 +12,9 @@ struct StoreDetailView: View {
     let store: StoreType
     var titleProducts: String = "Produtos"
     @Environment(\.presentationMode) var presentationMode
+    //@Environment(\.dismiss) var dismiss
+    @State private var selectedProduct: ProductType?
+    
     
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -52,32 +55,32 @@ struct StoreDetailView: View {
                     .padding()
                 
                 ForEach(store.products) { product in
-                    NavigationLink {
-                        ProductDetailView(product: product)
+                    Button {
+                        selectedProduct = product
                     } label: {
-                        VStack(alignment: .leading) {
-                            HStack(spacing: 8) {
-                                VStack(alignment: .leading, spacing: 8) {
-                                    Text(product.name)
-                                        .bold()
-                                    Text(product.description)
-                                        .foregroundColor(.black.opacity(0.5))
-                                        .multilineTextAlignment(.leading)
-                                    Text(product.formattedPrice)
-                                        .bold()
-                                }
-                                Spacer()
-                                
-                                Image(product.image)
-                                    .resizable()
-                                    .scaledToFit()
-                                    .cornerRadius(12)
-                                    .frame(width: 120, height: 120)
-                                    .shadow(color: .black.opacity(0.3), radius: 20, x: 6, y: 8)
+                        HStack(spacing: 8) {
+                            VStack(alignment: .leading, spacing: 8) {
+                                Text(product.name)
+                                    .bold()
+                                Text(product.description)
+                                    .foregroundColor(.black.opacity(0.5))
+                                    .multilineTextAlignment(.leading)
+                                Text(product.formattedPrice)
+                                    .bold()
                             }
+                            Spacer()
+                            
+                            Image(product.image)
+                                .resizable()
+                                .scaledToFit()
+                                .cornerRadius(12)
+                                .frame(width: 120, height: 120)
+                                .shadow(color: .black.opacity(0.3), radius: 20, x: 6, y: 8)
                         }
                         .padding()
                         .foregroundColor(.black)
+                    }.sheet(item: $selectedProduct) { product in
+                        ProductDetailView(product: product)
                     }
                 }
             }
@@ -89,6 +92,7 @@ struct StoreDetailView: View {
                     placement: .navigationBarLeading,
                     content: {
                         Button {
+                            //dismiss()
                             presentationMode.wrappedValue.dismiss()
                         } label: {
                             HStack(spacing: 4) {
@@ -108,3 +112,13 @@ struct StoreDetailView: View {
     let storePreview = storesItemMock
     StoreDetailView(store: storePreview)
 }
+
+//@Environment(\.presentationMode) “injeta” o PresentationMode dessa
+//view, permitindo controlar a apresentação (fechar a view, por
+//exemplo)
+
+//presentationMode.wrappedValue.dismiss() pede para fechar/voltar a
+//view atual.
+
+//IOS+15 pode-se usar: @Environment(\.dismiss) var dismiss +
+//dismiss().
