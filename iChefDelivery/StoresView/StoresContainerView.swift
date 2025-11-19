@@ -10,7 +10,7 @@ import SwiftUI
 struct StoresContainerView: View {
     
     let title: String = "Lojas"
-    @State private var ratingFilter: Int = 0
+    @State private var ratingFilter: Int = 5
     var filteredStores: [StoreType] {
         return storesMock.filter { store in
             store.stars >= ratingFilter
@@ -42,6 +42,28 @@ struct StoresContainerView: View {
             
             
             VStack(alignment: .leading, spacing: 30) {
+                
+                if(filteredStores.isEmpty) {
+                    VStack {
+                        Image(systemName: "magnifyingglass.circle.fill")
+                            .resizable()
+                            .scaledToFit()
+                            .foregroundColor(Color("ColorRed"))
+                            .frame(width: 64, height: 64)
+                            .padding(.top, 32)
+                        
+                        Text("Nenhuma loja encontrada para o filtro selecionado.")
+                            .font(.title3)
+                            .bold()
+                            .foregroundColor(Color("ColorRed"))
+                            .padding(.horizontal)
+                            .padding(.vertical, 12)
+                            .frame(maxWidth: .infinity)
+                            .multilineTextAlignment(.center)
+                        
+                    }
+                }
+                
                 ForEach(filteredStores) { item in
                     NavigationLink {
                         StoreDetailView(store: item)
