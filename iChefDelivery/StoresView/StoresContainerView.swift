@@ -10,12 +10,15 @@ import SwiftUI
 struct StoresContainerView: View {
     
     let title: String = "Lojas"
-    @State private var ratingFilter: Int = 5
+    @State private var ratingFilter: Int = 0
+    
     var filteredStores: [StoreType] {
         return storesMock.filter { store in
-            store.stars >= ratingFilter
+            store.stars >= ratingFilter && (min...max).contains(store.distance)
         }
     }
+    @State var min: Double = 0.0
+    @State var max: Double = 100.0
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -25,7 +28,7 @@ struct StoresContainerView: View {
                 
                 Spacer()
                 
-                Menu("Filtrar") {
+                Menu("Estrelas") {
                     Button {
                         ratingFilter = 0
                     } label: {
@@ -42,7 +45,25 @@ struct StoresContainerView: View {
                             }
                             return Text("\(rating) estrela ou mais")
                         }
-
+                        
+                    }
+                }.foregroundColor(.black)
+                Menu("Distância") {
+                    Button {
+                        min = 0.0
+                        max = 100.0
+                    } label: {
+                        Text("Limpar Filtro")
+                    }
+                    Divider()
+                    
+                    ForEach(Array(stride(from: 0, through: 25, by: 5)), id:\.self) { number in
+                        Button {
+                            max = Double(number + 5)
+                            min = Double(number)
+                        } label: {
+                            return Text("de \(Int(number)) até \(Int(number+5)) km")
+                        }
                     }
                 }.foregroundColor(.black)
             }
