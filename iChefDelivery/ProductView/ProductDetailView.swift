@@ -10,7 +10,7 @@ import SwiftUI
 struct ProductDetailView: View {
     
     let product: ProductType
-    
+    @State private var productQuantity: Int = 1
     
     var body: some View {
         VStack {
@@ -18,7 +18,7 @@ struct ProductDetailView: View {
             
             Spacer()
             
-            ProductDetailQuantityView()
+            ProductDetailQuantityView(productQuantity: $productQuantity)
             
             Spacer()
             
@@ -31,3 +31,6 @@ struct ProductDetailView: View {
     let productItemPreview = productsItemMock
     ProductDetailView(product: productItemPreview)
 }
+
+//Binding usado na ProductDetailQuantityView é para estabelecer uma ligacao entre
+//as duas vars, pra atualizar tanto o valor filho quanto o pai
