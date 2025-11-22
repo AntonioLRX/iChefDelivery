@@ -50,6 +50,7 @@ struct HomeView: View {
                         .padding()
                         .multilineTextAlignment(.center)
                         .foregroundColor(.black.opacity(0.7))
+                    
                         .opacity(isAnimating ? 1 : 0)
                         .offset(y: isAnimating ? 0 : -40)
                         .frame(width: isAnimating ? geometry.size.width : 30)
@@ -60,6 +61,8 @@ struct HomeView: View {
                         .shadow(radius: 60)
                         .padding(isAnimating ? 32 : 92)
                         .opacity(isAnimating ? 1 : 0)
+                        .blur(radius: isAnimating ? 0 : 10)
+                    
                         .offset(
                             x: imageOffset.width,
                             y: imageOffset.height
@@ -80,7 +83,7 @@ struct HomeView: View {
                 }
                 .onAppear
                 {
-                    withAnimation(.easeInOut(duration: 4)) {
+                    withAnimation(.easeInOut(duration: 3)) {
                         isAnimating = true
                     }
                     
