@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeView: View {
     
     @State private var isAnimating: Bool = false
+    @State private var imageOffset: CGSize = .zero
     
     var body: some View {
         
@@ -37,12 +38,12 @@ struct HomeView: View {
                 
                 VStack {
                     Text("iChef Delivery!")
-                        .font(.system(size: isAnimating ? 40 : 20))
+                        .font(.system(size: isAnimating ? 40 : 0))
                         .fontWeight(.heavy)
                         .foregroundColor(Color("ColorRed"))
                         .opacity(isAnimating ? 1 : 0)
                         .offset(y: isAnimating ? 0 : -40)
-                        .frame(width: isAnimating ? geometry.size.width :  30)
+                        .frame(width: isAnimating ? geometry.size.width :  geometry.size.width - 30)
                     
                     Text("Peça as suas comidas no conforto da sua casa")
                         .font(.title2)
@@ -53,7 +54,24 @@ struct HomeView: View {
                         .offset(y: isAnimating ? 0 : -40)
                         .frame(width: isAnimating ? geometry.size.width : 30)
                     
-                    Spacer()
+                    Image("image")
+                        .resizable()
+                        .scaledToFit()
+                        .shadow(radius: 60)
+                        .padding(32)
+                        .offset(
+                            x: imageOffset.width,
+                            y: imageOffset.height
+                        )
+                        .gesture(
+                            DragGesture()
+                                .onChanged({ gesture in
+                                    imageOffset = gesture.translation
+                                })
+                                .onEnded({ _ in
+                                    imageOffset = .zero
+                                })
+                        )
                 }
                 .onAppear
                 {
