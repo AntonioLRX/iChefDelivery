@@ -43,7 +43,7 @@ struct HomeView: View {
                         .foregroundColor(Color("ColorRed"))
                         .opacity(isAnimating ? 1 : 0)
                         .offset(y: isAnimating ? 0 : -40)
-                        .frame(width: isAnimating ? geometry.size.width :  geometry.size.width - 30)
+                        .padding(isAnimating ? 12 : 92)
                     
                     Text("Peça as suas comidas no conforto da sua casa")
                         .font(.title2)
@@ -58,7 +58,8 @@ struct HomeView: View {
                         .resizable()
                         .scaledToFit()
                         .shadow(radius: 60)
-                        .padding(32)
+                        .padding(isAnimating ? 32 : 92)
+                        .opacity(isAnimating ? 1 : 0)
                         .offset(
                             x: imageOffset.width,
                             y: imageOffset.height
@@ -66,10 +67,14 @@ struct HomeView: View {
                         .gesture(
                             DragGesture()
                                 .onChanged({ gesture in
-                                    imageOffset = gesture.translation
+                                    withAnimation(.easeInOut(duration: 0.5)) {
+                                        imageOffset = gesture.translation
+                                    }
                                 })
                                 .onEnded({ _ in
-                                    imageOffset = .zero
+                                    withAnimation(.easeInOut(duration: 0.5)) {
+                                        imageOffset = .zero
+                                    }
                                 })
                         )
                 }
