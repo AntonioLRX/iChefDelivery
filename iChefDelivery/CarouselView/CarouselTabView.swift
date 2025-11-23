@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CarouselTabView: View {
     
-    let orders = ordersCarouselMock
+    let orders: [OrderType] = ordersCarouselMock
     @State private var currentIndex = 1
     
     var body: some View {
