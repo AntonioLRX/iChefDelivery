@@ -42,12 +42,12 @@ struct HomeCircleView: View {
     }
 }
 
-#Preview {
+#Preview(traits: .sizeThatFitsLayout) {
     HomeCircleView(
         isAnimating: .constant(true),
         startX: 50,
         startY: 100,
         endX: 100,
         endY: 50
-    )
+    ).frame(height: 400)
 }

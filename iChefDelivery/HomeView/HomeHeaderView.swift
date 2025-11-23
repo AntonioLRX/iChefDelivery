@@ -14,7 +14,7 @@ struct HomeHeaderView: View {
     
     var body: some View {
         Text("iChef Delivery!")
-            .font(.system(size: isAnimating ? 48 : 0))
+            .font(.system(size: isAnimating ? 48 : 22))
             .fontWeight(.heavy)
             .foregroundColor(Color("ColorRed"))
             .opacity(isAnimating ? 1 : 0)
@@ -26,7 +26,6 @@ struct HomeHeaderView: View {
             .padding()
             .multilineTextAlignment(.center)
             .foregroundColor(.black.opacity(0.7))
-        
             .opacity(isAnimating ? 1 : 0)
             .offset(y: isAnimating ? 0 : -40)
             .frame(width: isAnimating ? width : 30)
@@ -38,7 +37,6 @@ struct HomeHeaderView: View {
             .padding(isAnimating ? 32 : 92)
             .opacity(isAnimating ? 1 : 0)
             .blur(radius: isAnimating ? 0 : 10)
-        
             .offset(
                 x: imageOffset.width,
                 y: imageOffset.height
@@ -59,8 +57,8 @@ struct HomeHeaderView: View {
     }
 }
 
-#Preview {
+#Preview(traits: .sizeThatFitsLayout) {
     HomeHeaderView(
-        isAnimating: .constant(true), width: 100
-    )
+        isAnimating: .constant(true), width: 400
+    ).padding()
 }
