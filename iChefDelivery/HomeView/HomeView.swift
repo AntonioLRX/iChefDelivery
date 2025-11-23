@@ -16,28 +16,20 @@ struct HomeView: View {
     let buttonHeight: CGFloat = 80
     
     var body: some View {
-        
         GeometryReader { geometry in
             ZStack {
-                Circle()
-                    .foregroundColor(Color("ColorRed"))
-                    .frame(width: isAnimating ? 200 : 0)
-                    .position(
-                        x: isAnimating ? 50 : -50,
-                        y: isAnimating ? 100 : -100,
-                    )
-                    .blur(radius: 60)
-                    .opacity(isAnimating ? 0.5 : 0)
                 
-                Circle()
-                    .foregroundColor(Color("ColorRedDark"))
-                    .frame(width: isAnimating ? 200 : 0)
-                    .position(
-                        x: isAnimating ? geometry.size.width - 50 : geometry.size.width + 50,
-                        y: isAnimating ? geometry.size.height - 50 : geometry.size.height + 50,
-                    )
-                    .blur(radius: 60)
-                    .opacity(isAnimating ? 0.5 : 0)
+                HomeCircleView(
+                    isAnimating: $isAnimating,
+                )
+                
+                HomeCircleView(
+                    isAnimating: $isAnimating,
+                    startX: geometry.size.width + 50,
+                    startY: geometry.size.height + 50,
+                    endX: geometry.size.width - 50,
+                    endY: geometry.size.height - 50
+                )
                 
                 VStack {
                     Text("iChef Delivery!")
@@ -147,9 +139,9 @@ struct HomeView: View {
                                 })
                         )
                     }
-                    .frame(width: geometry.size.width - 60, height: buttonHeight)
                     .offset(y: isAnimating ? 0 : 100)
                     .opacity(isAnimating ? 1 : 0)
+                    .frame(width: geometry.size.width - 60, height: buttonHeight)
                 }
                 .onAppear
                 {
