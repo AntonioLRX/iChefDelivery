@@ -12,6 +12,7 @@ struct HomeView: View {
     @State private var isAnimating: Bool = false
     @State private var imageOffset: CGSize = .zero
     @State private var buttonOffset: CGFloat = 0
+    @State private var showSecondScreen: Bool = false
     let buttonHeight: CGFloat = 80
     
     var body: some View {
@@ -40,7 +41,7 @@ struct HomeView: View {
                 
                 VStack {
                     Text("iChef Delivery!")
-                        .font(.system(size: isAnimating ? 40 : 0))
+                        .font(.system(size: isAnimating ? 48 : 0))
                         .fontWeight(.heavy)
                         .foregroundColor(Color("ColorRed"))
                         .opacity(isAnimating ? 1 : 0)
@@ -134,7 +135,7 @@ struct HomeView: View {
                                 })
                                 .onEnded({ _ in
                                     if(buttonOffset > (geometry.size.width - 60) / 2) {
-                                        //TODO NAVIGATE
+                                        showSecondScreen = true
                                     }
                                     else {
                                         withAnimation(
@@ -145,9 +146,10 @@ struct HomeView: View {
                                     }
                                 })
                         )
-                    }.frame(width: geometry.size.width - 60, height: buttonHeight)
-                    
-                    
+                    }
+                    .frame(width: geometry.size.width - 60, height: buttonHeight)
+                    .offset(y: isAnimating ? 0 : 100)
+                    .opacity(isAnimating ? 1 : 0)
                 }
                 .onAppear
                 {
@@ -156,6 +158,9 @@ struct HomeView: View {
                     }
                     
                 }
+            }
+            .fullScreenCover(isPresented: $showSecondScreen) {
+                ContentView()
             }
         }
     }
