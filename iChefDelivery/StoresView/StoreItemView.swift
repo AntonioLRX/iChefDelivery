@@ -27,8 +27,6 @@ struct StoreItemView: View {
 }
 
 #Preview(traits: .sizeThatFitsLayout) {
-    let storePreview = storesItemMock
-    
-    StoreItemView(store: storePreview)
+    StoreItemView(store: storesItemMock)
         .padding()
 }

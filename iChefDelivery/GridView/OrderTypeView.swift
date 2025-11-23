@@ -28,8 +28,7 @@ struct OrderTypeView: View {
 }
 
 #Preview(traits: .sizeThatFitsLayout) {
-    let orderPreview: OrderType = ordersMock[0]
     OrderTypeView(
-        orderType: orderPreview
+        orderType: orderItemMock
     )
 }

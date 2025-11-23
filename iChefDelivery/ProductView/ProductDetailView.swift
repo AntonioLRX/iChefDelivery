@@ -28,8 +28,7 @@ struct ProductDetailView: View {
 }
 
 #Preview(traits: .sizeThatFitsLayout) {
-    let productItemPreview = productsItemMock
-    ProductDetailView(product: productItemPreview)
+    ProductDetailView(product: productsItemMock)
 }
 
 //Binding usado na ProductDetailQuantityView é para estabelecer uma ligacao entre

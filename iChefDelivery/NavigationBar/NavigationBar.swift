@@ -25,6 +25,7 @@ struct NavigationBar: View {
     }
 }
 
-#Preview(traits: .sizeThatFitsLayout, body: {
-    NavigationBar().padding()
-})
+#Preview(traits: .sizeThatFitsLayout) {
+    NavigationBar()
+        .padding()
+}

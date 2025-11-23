@@ -50,8 +50,7 @@ struct StoreDetailView: View {
 }
 
 #Preview(traits: .sizeThatFitsLayout) {
-    let storePreview = storesItemMock
-    StoreDetailView(store: storePreview)
+    StoreDetailView(store: storesItemMock)
 }
 
 //@Environment(\.presentationMode) “injeta” o PresentationMode dessa
