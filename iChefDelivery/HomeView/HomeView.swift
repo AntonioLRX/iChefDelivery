@@ -10,7 +10,6 @@ import SwiftUI
 struct HomeView: View {
     
     @State private var isAnimating: Bool = false
-    @State private var imageOffset: CGSize = .zero
     @State private var buttonOffset: CGFloat = 0
     @State private var showSecondScreen: Bool = false
     let buttonHeight: CGFloat = 80
@@ -32,50 +31,10 @@ struct HomeView: View {
                 )
                 
                 VStack {
-                    Text("iChef Delivery!")
-                        .font(.system(size: isAnimating ? 48 : 0))
-                        .fontWeight(.heavy)
-                        .foregroundColor(Color("ColorRed"))
-                        .opacity(isAnimating ? 1 : 0)
-                        .offset(y: isAnimating ? 0 : -40)
-                        .padding(isAnimating ? 12 : 92)
-                    
-                    Text("Peça as suas comidas no conforto da sua casa")
-                        .font(.title2)
-                        .padding()
-                        .multilineTextAlignment(.center)
-                        .foregroundColor(.black.opacity(0.7))
-                    
-                        .opacity(isAnimating ? 1 : 0)
-                        .offset(y: isAnimating ? 0 : -40)
-                        .frame(width: isAnimating ? geometry.size.width : 30)
-                    
-                    Image("image")
-                        .resizable()
-                        .scaledToFit()
-                        .shadow(radius: 60)
-                        .padding(isAnimating ? 32 : 92)
-                        .opacity(isAnimating ? 1 : 0)
-                        .blur(radius: isAnimating ? 0 : 10)
-                    
-                        .offset(
-                            x: imageOffset.width,
-                            y: imageOffset.height
-                        )
-                        .gesture(
-                            DragGesture()
-                                .onChanged({ gesture in
-                                    withAnimation(.easeInOut(duration: 0.5)) {
-                                        imageOffset = gesture.translation
-                                    }
-                                })
-                                .onEnded({ _ in
-                                    withAnimation(.easeInOut(duration: 0.5)) {
-                                        imageOffset = .zero
-                                    }
-                                })
-                        )
-                    
+                    HomeHeaderView(
+                        isAnimating: $isAnimating,
+                        width: geometry.size.width
+                    )
                     ZStack {
                         Capsule()
                             .fill(Color("ColorRed").opacity(0.2))
