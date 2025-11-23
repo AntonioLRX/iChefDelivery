@@ -98,6 +98,13 @@ struct HomeView: View {
                             .foregroundColor(Color("ColorRedDark"))
                         
                         HStack {
+                            Capsule()
+                                .fill(Color("ColorRed"))
+                                .frame(width: buttonOffset + buttonHeight)
+                            Spacer()
+                        }
+                        
+                        HStack {
                             ZStack {
                                 Circle()
                                     .foregroundColor(Color("ColorRed"))
@@ -112,7 +119,32 @@ struct HomeView: View {
                             
                             Spacer()
                         }
-                        
+                        .offset(x: buttonOffset)
+                        .gesture(
+                            DragGesture()
+                                .onChanged({ gesture in
+                                    
+                                    if (gesture.translation.width > 0 && buttonOffset <= (geometry.size.width - 60) - buttonHeight) {
+                                        withAnimation(
+                                            .easeInOut(duration: 0.25)
+                                        ) {
+                                            buttonOffset = gesture.translation.width
+                                        }
+                                    }
+                                })
+                                .onEnded({ _ in
+                                    if(buttonOffset > (geometry.size.width - 60) / 2) {
+                                        //TODO NAVIGATE
+                                    }
+                                    else {
+                                        withAnimation(
+                                            .easeInOut(duration: 0.25)
+                                        ) {
+                                            buttonOffset = 0
+                                        }
+                                    }
+                                })
+                        )
                     }.frame(width: geometry.size.width - 60, height: buttonHeight)
                     
                     
