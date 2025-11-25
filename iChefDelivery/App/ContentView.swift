@@ -31,22 +31,16 @@ struct ContentView: View {
     
     // MARK: - Methods
     func fetchData() {
-        guard let url = URL(string: "https://private-9d965-antonioxavier.apiary-mock.com/stores") else { return }
+        guard let url = URL(string: "https://private-9d965-antonioxavier.apiary-mock.com/home") else { return }
         
         URLSession.shared.dataTask(with: url) { data, _, error in
-                    if let error = error {
-                        print(error.localizedDescription)
-                    }
-                    else if let data = data {
-                        do {
-                            let json = try JSONSerialization.jsonObject(with: data)
-                            print(json)
-                        } catch {
-                            print(error.localizedDescription)
-                        }
-                        
-                    }
-                }.resume()
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            else if let data = data {
+                let storesObjects = try? JSONDecoder().decode([StoreType].self, from: data)
+            }
+        }.resume()
     }
 }
 
