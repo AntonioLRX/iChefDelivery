@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeButtonView: View {
     
-    @State private var buttonOffset: CGFloat = 0
+    @State private var buttonOffset: CGFloat = .zero
     @Binding var showSecondScreen: Bool
     @Binding var isAnimating: Bool
     let buttonHeight: CGFloat = 80
@@ -27,25 +27,26 @@ struct HomeButtonView: View {
             Text("Descubra mais")
                 .font(.title2)
                 .bold()
-                .offset(x: 20)
                 .foregroundColor(Color("ColorRedDark"))
+                .offset(x: 20)
             
             HStack {
                 Capsule()
                     .fill(Color("ColorRed"))
                     .frame(width: buttonOffset + buttonHeight)
+                
                 Spacer()
             }
             
             HStack {
                 ZStack {
                     Circle()
-                        .foregroundColor(Color("ColorRed"))
+                        .fill(Color("ColorRed"))
                     Circle()
-                        .foregroundColor(Color("ColorRedDark"))
-                        .padding(9)
+                        .fill(Color("ColorRedDark"))
+                        .padding(8)
                     Image(systemName: "chevron.right.2")
-                        .font(.system(size: 24))
+                        .font(.system(size: 24, weight: .bold))
                         .bold()
                         .foregroundColor(.white)
                 }
@@ -56,8 +57,7 @@ struct HomeButtonView: View {
             .gesture(
                 DragGesture()
                     .onChanged({ gesture in
-                        
-                        if (gesture.translation.width > 0 && buttonOffset <= (width - 60) - buttonHeight) {
+                        if gesture.translation.width > 0 && buttonOffset <= (width - 60) - buttonHeight {
                             withAnimation(
                                 .easeInOut(duration: 0.25)
                             ) {
@@ -66,7 +66,7 @@ struct HomeButtonView: View {
                         }
                     })
                     .onEnded({ _ in
-                        if(buttonOffset > (width - 60) / 2) {
+                        if buttonOffset > (width - 60) / 2 {
                             showSecondScreen = true
                         }
                         else {
@@ -79,9 +79,9 @@ struct HomeButtonView: View {
                     })
             )
         }
-        .offset(y: isAnimating ? 0 : 100)
-        .opacity(isAnimating ? 1 : 0)
         .frame(width: width - 60, height: buttonHeight)
+        .opacity(isAnimating ? 1 : 0)
+        .offset(y: isAnimating ? 0 : 100)
     }
 }
 
