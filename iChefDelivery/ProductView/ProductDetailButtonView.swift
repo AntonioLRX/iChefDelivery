@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct ProductDetailButtonView: View {
+    
+    var onButtonPress: () -> Void
+    
     var body: some View {
         Button(
-            action: {
-                print("O botão foi pressionado!")
-            },
+            action: onButtonPress,
             label: {
                 HStack {
                     Image(systemName: "cart")
@@ -33,6 +34,8 @@ struct ProductDetailButtonView: View {
 }
 
 #Preview(traits: .sizeThatFitsLayout) {
-    ProductDetailButtonView()
-        .padding()
+    ProductDetailButtonView(
+        onButtonPress: { print("Botão pressionado") }
+    )
+    .padding()
 }

@@ -22,7 +22,11 @@ struct ProductDetailView: View {
             
             Spacer()
             
-            ProductDetailButtonView()
+            ProductDetailButtonView(
+                onButtonPress: {
+                    //Todo
+                }
+            )
         }
     }
 }
