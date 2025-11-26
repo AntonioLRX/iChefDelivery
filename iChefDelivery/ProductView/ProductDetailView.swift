@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ProductDetailView: View {
     
+    // MARK: - Attributes
+    var service =  HomeService()
     let product: ProductType
     @State private var productQuantity: Int = 1
     
@@ -24,9 +26,29 @@ struct ProductDetailView: View {
             
             ProductDetailButtonView(
                 onButtonPress: {
-                    //Todo
+                    Task {
+                        await addToCart()
+                    }
                 }
             )
+        }
+    }
+    
+    // MARK: - Methods
+    
+    func addToCart() async {
+        do {
+            let result = try await service.confirmCart(
+                product: product
+            )
+            switch result {
+            case .success(let message):
+                print(message ?? "Erro Inesperado")
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        } catch {
+            print(error.localizedDescription)
         }
     }
 }
