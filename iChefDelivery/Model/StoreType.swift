@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct StoreType: Identifiable, Decodable {
+struct StoreType: Identifiable, nonisolated Decodable {
     let id: Int
     let name: String
     let logoImage: String

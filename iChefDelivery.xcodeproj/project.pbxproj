@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		8042D5F72ED7DE7000F56266 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 8042D5F62ED7DE7000F56266 /* Alamofire */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		806CEFFD2EC2C1F500A8322C /* iChefDelivery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iChefDelivery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8042D5F72ED7DE7000F56266 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +70,7 @@
 			);
 			name = iChefDelivery;
 			packageProductDependencies = (
+				8042D5F62ED7DE7000F56266 /* Alamofire */,
 			);
 			productName = iChefDelivery;
 			productReference = 806CEFFD2EC2C1F500A8322C /* iChefDelivery.app */;
@@ -94,6 +100,9 @@
 			);
 			mainGroup = 806CEFF42EC2C1F500A8322C;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				8042D5F52ED7DE7000F56266 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 806CEFFE2EC2C1F500A8322C /* Products */;
 			projectDirPath = "";
@@ -328,6 +337,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8042D5F52ED7DE7000F56266 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.10.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8042D5F62ED7DE7000F56266 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8042D5F52ED7DE7000F56266 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 806CEFF52EC2C1F500A8322C /* Project object */;
 }

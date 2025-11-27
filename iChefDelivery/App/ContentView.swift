@@ -40,6 +40,8 @@ struct ContentView: View {
             Task {
                 await getStores()
             }
+            
+            getStoresWithAlamofire()
         }
     }
     
@@ -59,6 +61,12 @@ struct ContentView: View {
         } catch {
             self.isLoading = false
             print(error.localizedDescription)
+        }
+    }
+    
+    func getStoresWithAlamofire() {
+        service.fetchDataWithAlamofire { stores, error in
+            print(stores ?? "")
         }
     }
 }
