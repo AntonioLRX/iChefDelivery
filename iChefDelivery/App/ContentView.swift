@@ -11,6 +11,7 @@ struct ContentView: View {
     
     // MARK: - Attributes
     private var service =  HomeService()
+    private var viewModel = HomeViewModel()
     @State private var storesType: [StoreType] = []
     @State private var isLoading: Bool = true
     
